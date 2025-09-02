@@ -1,14 +1,1 @@
-package org.example;
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        byte b = 127;
-        b = (byte) (b+1);
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!" + b);
-
-        }
-}
+package org.example;import java.text.NumberFormat;import java.util.Locale;public class Main {    public static void main(String[] args) {        //Monthly payment to be designed        double monthlyPayment = 0.00;        // Enter the price to be paid        double paymentTotal = 100000.00;        //Enter the monthly Interest Rate        double interestRate = 2.36/100;        //Choose a number of instalments        int instalments = 72;        monthlyPayment = paymentTotal * (interestRate * Math.pow(1.0 + interestRate, instalments))/(Math.pow(1.0 + interestRate, instalments) - 1.0);        //applying the correct money format        String result = NumberFormat.getCurrencyInstance(Locale.ITALY).format(monthlyPayment);        //printing formatting:        System.out.println("Monthly Payment: "+ result);    }}
