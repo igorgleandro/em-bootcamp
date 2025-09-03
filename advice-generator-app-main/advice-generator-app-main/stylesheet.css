@@ -1,0 +1,66 @@
+.attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+    body{
+      
+      display: flex;
+      justify-content: center; 
+      align-items: center;    
+      min-height: 80vh;
+      margin: 0;
+      background: hsl(217,19%, 16%);
+      font-size: 28px; 
+      font-family: "Manrope";
+      font-optical-sizing: auto;
+      font-weight: 800;
+      font-style: normal;
+    }
+
+  .adviceBox {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 25px;
+  padding: 1rem;
+  color: rgb(222, 231, 238);
+  background-color: hsl(217, 23%, 24%);
+  text-align: center;
+  }
+
+  .divIdBox {
+    
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    color: hsl(150, 100%, 66%);
+  }
+
+  .divAdiveceBox {
+  width: 90%;
+  max-width: 600px;
+  border-radius:25px;
+  margin:auto ;
+  padding: 1rem;
+  color: rgb(213, 220, 224);
+  background-color: hsl(217, 23%, 24%);
+  }
+
+  .diceButtonBox{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background-color: hsl(150, 100%, 66%);
+  }
+
+  .diceButtonBox:hover {
+  box-shadow: 0 0 20px hsl(150, 100%, 66%);
+  }
+
+  .diceBox {
+  margin-top: -15px;
+  color: rgb(222, 231, 238);
+  text-align: center;
+  }
