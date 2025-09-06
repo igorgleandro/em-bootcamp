@@ -8,35 +8,63 @@
     <!---links-->
 
     <link rel="icon" href="./favicons/faviconApp.png">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./style.css">
 
     <!--Main JS-->
-    <script defer src="./js/script.js"></script>
+    <script defer src="./script.js"></script>
 </head>
+
 <body>
+    <header>
+        <h1 class="title">POKEMON <br> VIWER</h1>
+        <img src="favicons\faviconBall.png" alt="pokeball" class="pokeball-logo"> 
+    </header>
+
     <main>
-        <img src="" alt="pokemon" class="pokemon_image">
-       
-        <h1 class="pokemon_data">
-        <span class="pokemon_number"></span> -
-        <span class="pokemon_name"></span>
-        <p></p>
-        <span class="pokemon_xp"></span>
-    </h1>
-    
-    <form class="form">
-        <input type="search" class="input_search" placeholder="Name or Number" required>
-    </form>
+         <div class="pokemon-container grid">
+      <form>
+        <div>
+        <label for="pokemonBox-Title">Pokemon List</label>
+        </div>
 
-    <div class="buttons">
-        <button class="button btn-prev">Prev &lt; </button>
-        <button class="button btn-next">Next &gt; </button>
+        <div>
+          <div id="pokemon-buttons" class="grid select-buttons" >
+          </div>
+        </div>
+
+        <br>
+        
+        <div id="pagination" class="grid select-buttons" ></div>
+
+      </form>
+
+      <div class="viwer-container grid">
+
+        <div class="flex result-box">
+         <div>
+            <div class="flex small-viwer">
+              <p class="viwer-heading">Pokemon number</p>
+              <p class="viwer-name-pokemon">Pokemon Name</p>
+            </div>
+
+
+          </div>
+
+          <div class="flex small-viwer">
+              <p class="viwer-heading">Total amount <br> <small>/person</small></p>
+              <p class="viwer-name">$0.00</p>
+            </div>
+
+        </div>
+      </div>
+
     </div>
-
-        <img src="./images/pokedex.png" alt=""pokedex" class="pokedex">
-
-
+  </main>
     </main>
-    
+
+
+
+
+
+
 </body>
-</html>

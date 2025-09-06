@@ -9,23 +9,25 @@ async function fetchPokeAPI(url = apiURL) {
 }
 
 async function renderPokemon(url) {
+
   const pokemonButtons = document.getElementById("pokemon-buttons");
   const pokemons = await fetchPokeAPI(url);
 
   const pokeResults = pokemons.results
 
+  const pokePreviousURL = pokemons.previous
+  const pokemonPreviousBox = document.getElementById("pagination")
   const pokeNextURL = pokemons.next
   const pokemonNextBox = document.getElementById("pagination")
 
-  const pokePreviousURL = pokemons.previous
-  const pokemonPreviousBox = document.getElementById("pagination")
-
-pokemonButtons.innerHTML = "";
-pokemonNextBox.innerHTML ="";
-pokemonPreviousBox.innerHTML ="";
-
+  
+// Clean Before Render
+    pokemonButtons.innerHTML = "";
+    pokemonNextBox.innerHTML ="";
+    pokemonPreviousBox.innerHTML ="";
 
 
+//Render
   pokeResults.forEach(pokemon => {
     const btn = document.createElement("button");
     btn.textContent = pokemon.name;
@@ -34,7 +36,7 @@ pokemonPreviousBox.innerHTML ="";
     fetchPokeAPI();
   });
 
-
+//If have previous
   if(pokePreviousURL){
     const btn = document.createElement("button");
     btn.textContent = "<= Prev";
@@ -48,7 +50,7 @@ pokemonPreviousBox.innerHTML ="";
     pokemonPreviousBox.appendChild(btn);
     
     }  
-
+// If have Next
   if(pokeNextURL){
     const btn = document.createElement("button");
     btn.textContent = 'Next=>';
@@ -62,61 +64,9 @@ pokemonPreviousBox.innerHTML ="";
     btn.addEventListener('click', () => fetchPokeAPI(pokeNextURL))
 
     pokemonNextBox.appendChild(btn);
-    
-    
     }
 
-  
-}
+  }
 
+  //Initial Render
 renderPokemon();
-
-
-
-async function fetchNextAPI() {
-  const api = apiNext;
-  const response = await fetch(api);
-  const data = await response.json();
-  
-  return data; 
-}
-
-async function renderNextPage() {
-  const pokemonButtons = document.getElementById("pokemon-buttons");
-  const pokemons = await fetchPokeAPI();
-
-  const pokeResults = pokemons.results
-
-  const pokeNextBtn = pokemons.next
-  const pokePreviousBtn = pokemons.previous
-
-  pokeResults.forEach(pokemon => {
-    const btn = document.createElement("button");
-    btn.textContent = pokemon.name;
-    btn.classList.add("select-pokemon-button")
-    pokemonButtons.appendChild(btn);
-    fetchPokeAPI();
-  });
-
- if(pokeNextBtn){
-    const btn = document.createElement("button");
-    btn.textContent = pokeNextBtn;
-    btn.classList.add("select-pokemon-button");
-    pokemonButtons.appendChild(btn);
-    const apiNext = pokeNextBtn;
-    
-    }
-
-  if(pokePreviousBtn){
-    const btn = document.createElement("button");
-    btn.textContent = pokePreviousBtn;
-    btn.classList.add("select-pokemon-button")
-    pokemonButtons.appendChild(btn)
-    const apiPrevous = pokePreviousBtn;
-    }  
-}
-
-
-
-
-
