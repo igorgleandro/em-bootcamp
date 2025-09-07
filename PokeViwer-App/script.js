@@ -93,10 +93,13 @@ async function renderPokemonViwer(url) {
   const apiURL = url;
   const pokemonViwer = document.getElementById("pokemonViwerBox");
   const pokemonImgViwer = document.getElementById("pokemonImageBox");
+  const pokemonDetailViewer = document.getElementById("pokemonXpViewer")
  
   // Clean Before Render
     pokemonViwer.innerHTML = "";
     pokemonImgViwer.innerHTML ="";
+    pokemonDetailViewer.innerHTML="";
+
     
   const pokemons = await fetchViwerAPI(apiURL);
 
@@ -105,7 +108,7 @@ async function renderPokemonViwer(url) {
 
   const divNumber = document.createElement("div");
   divNumber.classList.add("viwer-heading");
-  divNumber.textContent = pokemons.order;
+  divNumber.textContent =  "order #" + pokemons.order;
   pokemonViwer.appendChild(divNumber);
 
   const divName = document.createElement("div");
@@ -114,12 +117,23 @@ async function renderPokemonViwer(url) {
   pokemonViwer.appendChild(divName);
 
   const divImg = document.createElement("img");
-  divImg.classList.add("viwer-name-pokemon");
+  divImg.classList.add("viwer-Img-pokemon");
   divImg.src = pokemons.sprites.front_default;
-  pokemonViwer.appendChild(divImg);
+  pokemonImgViwer.appendChild(divImg);
 
-  //class="viwer-heading"
-  
+  const pXp = document.createElement("p");
+  pXp.classList.add("viwer-heading");
+  pXp.textContent = "Base Experience: " + pokemons.base_experience + "XP";
+  pokemonDetailViewer.appendChild(pXp);
 
-  
+  const pHeight = document.createElement("p");
+  pHeight.classList.add("viwer-heading");
+  pHeight.textContent = "Height: " + pokemons.height + " cm";
+  pokemonDetailViewer.appendChild(pHeight);
+
+  const pweight = document.createElement("p");
+  pweight.classList.add("viwer-heading");
+  pweight.textContent = "Weight: " + pokemons.weight + " grams";
+  pokemonDetailViewer.appendChild(pweight);
+ 
 }

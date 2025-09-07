@@ -37,6 +37,13 @@
   position: relative;  
   z-index: -1;   
 }
+.viwer-Img-pokemon {
+  display: block;  
+  max-width: 10000px;         
+  height: auto;
+  position: relative;  
+ 
+}
 
 button{
     color: var(--White);
@@ -175,7 +182,6 @@ small{
 .result-box{
         align-items: initial;
         flex-direction: column;
-        justify-content: space-between;
         gap: 2rem;
     }
 
