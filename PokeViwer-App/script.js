@@ -1,5 +1,12 @@
 const apiURL = 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20' ;
 
+const pokemonImgViwer = document.getElementById("pokemonImageBox");
+const img = document.createElement("img");
+img.classList.add("viwer-Img-pokemon");
+img.src = "favicons/pokedex.png"; 
+pokemonImgViwer.appendChild(img)
+
+
 async function fetchPokeAPI(url = apiURL) {
   const api = url;
   const response = await fetch(api);
@@ -30,7 +37,7 @@ async function renderPokemon(url) {
 //Render
   pokeResults.forEach(pokemon => {
     const btn = document.createElement("button");
-    btn.textContent = pokemon.name;
+    btn.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);;
     const pokeViwerURL = pokemon.url;
     btn.classList.add("select-pokemon-button")
     pokemonButtons.appendChild(btn);
@@ -94,11 +101,13 @@ async function renderPokemonViwer(url) {
   const pokemonViwer = document.getElementById("pokemonViwerBox");
   const pokemonImgViwer = document.getElementById("pokemonImageBox");
   const pokemonDetailViewer = document.getElementById("pokemonXpViewer")
- 
+  const pokemonTypesBox = document.getElementById("pokemonTypesBox") 
+
   // Clean Before Render
     pokemonViwer.innerHTML = "";
     pokemonImgViwer.innerHTML ="";
     pokemonDetailViewer.innerHTML="";
+    pokemonTypesBox.innerHTML="";
 
     
   const pokemons = await fetchViwerAPI(apiURL);
@@ -113,13 +122,14 @@ async function renderPokemonViwer(url) {
 
   const divName = document.createElement("div");
   divName.classList.add("viwer-name-pokemon");
-  divName.textContent = pokemons.name;
+  divName.textContent = pokemons.name.toUpperCase();
   pokemonViwer.appendChild(divName);
 
   const divImg = document.createElement("img");
-  divImg.classList.add("viwer-Img-pokemon");
-  divImg.src = pokemons.sprites.front_default;
-  pokemonImgViwer.appendChild(divImg);
+   divImg.classList.add("viwer-Img-pokemon");
+   divImg.src = pokemons.sprites.versions["generation-v"]["black-white"].animated.front_default;
+   pokemonImgViwer.appendChild(divImg);
+
 
   const pXp = document.createElement("p");
   pXp.classList.add("viwer-heading");
@@ -135,5 +145,22 @@ async function renderPokemonViwer(url) {
   pweight.classList.add("viwer-heading");
   pweight.textContent = "Weight: " + pokemons.weight + " grams";
   pokemonDetailViewer.appendChild(pweight);
+
+//types
+
+  const pokeTypeResults = pokemons.types;
+
+
+  const typeInfo =document.createElement("div")
+  typeInfo.textContent = "Pokemon Type: ";
+  pokemonTypesBox.appendChild(typeInfo);
+
+  pokeTypeResults.forEach(types => {
+    const typeDiv = document.createElement("div");
+    typeDiv.classList.add("select-types-button");
+    const typeName = types.type.name;
+    typeDiv.textContent = typeName;
+    pokemonTypesBox.appendChild(typeDiv);  
+  });
  
 }
