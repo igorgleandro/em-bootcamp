@@ -1,0 +1,14 @@
+.addCartBtn {
+  background-color: #024904;   /* green background */
+  color: white;                /* white text */
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.addCartBtn:hover {
+  background-color: #000501;   /* darker green on hover */
+}
