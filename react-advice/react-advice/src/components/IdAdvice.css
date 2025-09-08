@@ -1,0 +1,8 @@
+.divIdBox {
+    
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    color: hsl(150, 100%, 66%);
+  }

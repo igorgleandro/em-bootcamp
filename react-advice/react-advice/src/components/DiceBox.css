@@ -1,0 +1,17 @@
+  .diceButtonBox{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background-color: hsl(150, 100%, 66%);
+  }
+
+  .diceButtonBox:hover {
+  box-shadow: 0 0 20px hsl(150, 100%, 66%);
+  }
+
+  .diceBox {
+  margin-top: -5px;
+  color: rgb(222, 231, 238);
+  text-align: center;
+  }
