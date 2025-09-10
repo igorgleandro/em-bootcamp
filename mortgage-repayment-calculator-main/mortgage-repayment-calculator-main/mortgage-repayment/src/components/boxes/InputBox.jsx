@@ -8,7 +8,7 @@ function InputBox() {
   return (
     <div className="p-4 w-1/3 bg-white">
       <div> Mortgage Calculator </div>
-      <InputAmount type="number" label="Mortgage Calculator" />
+      <InputAmount   type="number" label="Mortgage Calculator" />
       <div className="flex items-center">
       <InputAmount type="number" label="Mortgage Term" />
       <InputAmount type="number" label="Interest Rate" />

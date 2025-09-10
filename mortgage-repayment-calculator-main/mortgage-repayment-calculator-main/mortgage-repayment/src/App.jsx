@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-     <div className="p-6 flex rounded-lg items-center justify-center h-screen">
+     <div className="flex items-center justify-center h-screen">
   
       <InputBox />
       <OutputBox />
