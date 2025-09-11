@@ -16,5 +16,3 @@ export const Button = ({text, color, func}) => {
 
   return <button onClick={() => func()} className={`border-2 p-2 ${col}`}>{text}</button>;
 }
-
-const hello = (name) => {console.log("Hello" + name + "!")}

@@ -4,6 +4,10 @@ import NavBar from './components/NavBar'
 import { Button } from './components/Button'
 import { InputForm } from './components/InputForm'
 
+
+
+
+
 const App = () => {
   const [form1, setForm1] = useState({
     agentName: '',
@@ -34,47 +38,70 @@ const App = () => {
     </div>
   )
 
+
+  //List Form1 data
+
+const form1InputList = {
+  agentNameInput: {
+            onChange:updateForm1,
+            name:'agentName',
+            type:'text',
+            value:form1.agentName,
+            placeholder:'Agent Name',
+  },
+
+  agentNbrInput : {
+            onChange: updateForm1,  
+            name: 'agentNbr',
+            type: 'number',
+            value : form1.agentNbr,
+            placeholder: "Agent Number"
+            
+         },
+
+          agencyNameInput:{
+
+            onChange:updateForm1,
+            name: "agencyName",
+            type: "text",
+            value: form1.agencyName,
+            placeholder: "Agency Name",
+          },
+
+          agencyNbrInput: {
+            onChange:updateForm1,
+            name:"agencyNbr",
+            type:"number",
+            value:form1.agencyNbr,
+            placeholder:"Agency Number",
+          }
+
+}
+
   return (
     <>
       <NavBar />
       
       <div className="min-h-screen grid place-items-center bg-gray-200">
         <div className="grid grid-cols-2 gap-4 w-full max-w-4xl">
-      <div className="bg-white p-4">
-        <div className="flex flex-col gap-2">
+          <div className="bg-white p-4">
+            <div className="grid grid-cols-2 gap-4">
 
-          <InputForm
-            onChange={updateForm1}
-            name={'agentName'}
-            type={'text'}
-            value= {form1.agentName}
-            placeholder={'Agent Name'}
+         
+         
+          {Object.values(form1InputList).map(
+          ({ onChange, name, type, value, placeholder }, idx) => (
+            <InputForm
+              key={idx}
+              onChange={onChange}
+              name={name}
+              type={type}
+              value={value}
+              placeholder={placeholder}
             />
-
-          <InputForm
-            onChange={updateForm1}  
-            name={'agentNbr'}
-            type='number'
-            value={form1.agentNbr}
-            placeholder="Agent Number"
-            
-          />
-
-          <InputForm
-            onChange={updateForm1}
-            name="agencyName"
-            type="text"
-            value={form1.agencyName}
-            placeholder="Agency Name"
-           />
-
-          <InputForm
-            onChange={updateForm1}
-            name="agencyNbr"
-            type="number"
-            value={form1.agencyNbr}
-            placeholder="Agency Number"
-          />
+          )
+        )}
+         
 
         </div>
         <br></br>
@@ -93,6 +120,8 @@ const App = () => {
       </div>
 
         <div className="bg-white p-4">
+          <h1 className='text-red-700 font-bold' >Preview:</h1>
+          <p></p>
           <p>Agent Name: {form1.agentName}</p>
           <p>Agent Nbr: {String(form1.agentNbr)}</p>
           <p>Agency Name: {form1.agencyName}</p>
