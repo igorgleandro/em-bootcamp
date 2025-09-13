@@ -1,12 +1,9 @@
 import { useState } from 'react'
+import { createPortal } from "react-dom";
 import './App.css'
 import NavBar from './components/NavBar'
 import { Button } from './components/Button'
 import { InputForm } from './components/InputForm'
-
-
-
-
 
 const App = () => {
   const [form1, setForm1] = useState({
@@ -29,15 +26,26 @@ const App = () => {
    const handleConfirm = () => setShowConfirm(true) 
   const handleResetConfirm = () => setShowConfirm(false)
 
-  const ConfirmedInfo = () => (
-    <div className="bg-white p-4 rounded">
-      <p>Agent Name: {form1.agentName}</p>
-      <p>Agent Nbr: {String(form1.agentNbr)}</p>
-      <p>Agency Name: {form1.agencyName}</p>
-      <p>Agency Nbr: {String(form1.agencyNbr)}</p>
-    </div>
-  )
+const ConfirmedInfo = ({ form1 }) => {
+  return createPortal(
+    <div className="fixed inset-0 flex items-center justify-center bg-cyan-700/60 backdrop-blur-sm">
+      <div className="bg-white p-4 rounded shadow-lg max-w-sm w-full">
+        <p><strong>Agent Name:</strong> {form1.agentName}</p>
+        <p><strong>Agent Nbr:</strong> {String(form1.agentNbr)}</p>
+        <p><strong>Agency Name:</strong> {form1.agencyName}</p>
+        <p><strong>Agency Nbr:</strong> {String(form1.agencyNbr)}</p>
+      
 
+      <Button
+          color={'red'}
+          text={'Reset Input'}
+          func= {handleResetConfirm}
+        />
+    </div>
+    </div>,
+    document.body 
+  );
+};
 
   //List Form1 data
 
@@ -131,7 +139,7 @@ const form1InputList = {
         <div className='bg-gray-200 p-4 col-span-2'>
           Confirmed Information
 
-         {showConfirm ? <ConfirmedInfo /> : <p>No data confirmed yet.</p>}
+        {showConfirm ? <ConfirmedInfo form1={form1} /> : <p>No data confirmed yet.</p>}
 
         </div>
       </div>
