@@ -114,17 +114,19 @@ const form1InputList = {
 
         </div>
         <br></br>
-        <ColorButtons
-          color={'green'}
-          text={'Confirm Input'}
-          func= {handleConfirm}
-        />
+        <div className="flex flex-row gap-4">
+          <ColorButtons
+            color={'green'}
+            text={'Confirm Input'}
+            func= {handleConfirm}
+          />
 
-        <ColorButtons
-          color={'red'}
-          text={'Reset Input'}
-          func= {handleResetConfirm}
-        />
+          <ColorButtons
+            color={'red'}
+            text={'Reset Input'}
+            func= {handleResetConfirm}
+          />
+        </div>
 
       </div>
 
