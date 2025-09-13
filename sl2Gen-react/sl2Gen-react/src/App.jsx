@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { createPortal } from "react-dom";
 import './App.css'
 import NavBar from './components/NavBar'
-import { Button } from './components/Button'
 import { InputForm } from './components/InputForm'
+import ColorButtons from './components/ColorButtons.jsx';
+
 
 const App = () => {
   const [form1, setForm1] = useState({
@@ -35,8 +36,8 @@ const ConfirmedInfo = ({ form1 }) => {
         <p><strong>Agency Name:</strong> {form1.agencyName}</p>
         <p><strong>Agency Nbr:</strong> {String(form1.agencyNbr)}</p>
       
-
-      <Button
+      
+          <ColorButtons
           color={'red'}
           text={'Reset Input'}
           func= {handleResetConfirm}
@@ -113,13 +114,13 @@ const form1InputList = {
 
         </div>
         <br></br>
-        <Button
+        <ColorButtons
           color={'green'}
           text={'Confirm Input'}
           func= {handleConfirm}
         />
 
-        <Button
+        <ColorButtons
           color={'red'}
           text={'Reset Input'}
           func= {handleResetConfirm}
