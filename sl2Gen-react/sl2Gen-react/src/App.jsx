@@ -4,6 +4,9 @@ import './App.css'
 import NavBar from './components/NavBar'
 import { InputForm } from './components/InputForm'
 import ColorButtons from './components/ColorButtons.jsx';
+import Form2InputList from './components/Form2InputList.jsx'
+import Form1InputList from './components/Form1InputList.jsx';
+
 
 
 const App = () => {
@@ -13,6 +16,13 @@ const App = () => {
     agencyName: '',
     agencyNbr: '',
   })
+
+  const [form2, setForm2] = useState({
+    nameInsured: '',
+    descriptionRisk: '',
+    coverageCode: '',
+  })
+
 
   const [showConfirm, setShowConfirm] = useState(false)
 
@@ -24,17 +34,30 @@ const App = () => {
     }))
   }
 
+  const updateForm2 = (event) => {
+    const { name, value } = event.target
+    setForm2(prev => ({
+      ...prev,
+      [name] : value,
+    }))
+  }
+
    const handleConfirm = () => setShowConfirm(true) 
   const handleResetConfirm = () => setShowConfirm(false)
 
-const ConfirmedInfo = ({ form1 }) => {
+const ConfirmedInfo = ({ form1, form2 }) => {
+
   return createPortal(
+    
     <div className="fixed inset-0 flex items-center justify-center bg-cyan-700/60 backdrop-blur-sm">
       <div className="bg-white p-4 rounded shadow-lg max-w-sm w-full">
         <p><strong>Agent Name:</strong> {form1.agentName}</p>
         <p><strong>Agent Nbr:</strong> {String(form1.agentNbr)}</p>
         <p><strong>Agency Name:</strong> {form1.agencyName}</p>
         <p><strong>Agency Nbr:</strong> {String(form1.agencyNbr)}</p>
+        <p><strong>Name of Insured:</strong> {form2.nameInsured}</p>
+        <p><strong>Description Risk:</strong> {String(form2.descriptionRisk)}</p>
+        <p><strong>Coverage Code</strong> {form2.coverageCode}</p>
       
       
           <ColorButtons
@@ -49,43 +72,10 @@ const ConfirmedInfo = ({ form1 }) => {
 };
 
   //List Form1 data
+const form1InputList = Form1InputList({updateForm1, form1})
+    //List Form2 data
+const form2InputList= Form2InputList({ updateForm2, form2 }) 
 
-const form1InputList = {
-  agentNameInput: {
-            onChange:updateForm1,
-            name:'agentName',
-            type:'text',
-            value:form1.agentName,
-            placeholder:'Agent Name',
-  },
-
-  agentNbrInput : {
-            onChange: updateForm1,  
-            name: 'agentNbr',
-            type: 'number',
-            value : form1.agentNbr,
-            placeholder: "Agent Number"
-            
-         },
-
-          agencyNameInput:{
-
-            onChange:updateForm1,
-            name: "agencyName",
-            type: "text",
-            value: form1.agencyName,
-            placeholder: "Agency Name",
-          },
-
-          agencyNbrInput: {
-            onChange:updateForm1,
-            name:"agencyNbr",
-            type:"number",
-            value:form1.agencyNbr,
-            placeholder:"Agency Number",
-          }
-
-}
 
   return (
     <>
@@ -107,6 +97,20 @@ const form1InputList = {
               type={type}
               value={value}
               placeholder={placeholder}
+            />
+          )
+        )}
+
+        {Object.values(form2InputList).map(
+          ({ onChange, name, type, value, placeholder,options  }, idx) => (
+            <InputForm
+              key={idx}
+              onChange={onChange}
+              name={name}
+              type={type}
+              value={value}
+              placeholder={placeholder}
+              options={options}
             />
           )
         )}
@@ -137,12 +141,19 @@ const form1InputList = {
           <p>Agent Nbr: {String(form1.agentNbr)}</p>
           <p>Agency Name: {form1.agencyName}</p>
           <p>Agency Nbr: {String(form1.agencyNbr)}</p>
+        
+          <h1 className='text-red-700 font-bold' >____________________________</h1>
+          <p></p>
+          <p>Name of Insured: {form2.nameInsured}</p>
+          <p>Description Risk: {String(form2.descriptionRisk)}</p>
+          <p>Coverage Code {form2.coverageCode}</p>
+          
         </div>
 
         <div className='bg-gray-200 p-4 col-span-2'>
           Confirmed Information
 
-        {showConfirm ? <ConfirmedInfo form1={form1} /> : <p>No data confirmed yet.</p>}
+        {showConfirm ? <ConfirmedInfo form1={form1} form2={form2} /> : <p>No data confirmed yet.</p>}
 
         </div>
       </div>
