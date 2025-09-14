@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -9,6 +6,7 @@ import '@fontsource/roboto/700.css';
 import NavBar from './components/NavBar';
 import ProductCarousel from './components/ProductCarousel';
 import Box from '@mui/material/Box';
+import ProductDetails from './components/ProductDetails';
 
 function App() {
 
@@ -39,16 +37,26 @@ function ProductPage() {
   display="flex"
   justifyContent="space-between"
   alignItems="center"
-  p={2} // padding = theme.spacing(2) → 16px
->
+  p={4}
+  gap={4}
+  >
+
   <Box flex={1} textAlign="center" bgcolor="grey.200">
     <ProductPage />
   </Box>
 
-  
-  <Box flex={1} textAlign="center" bgcolor="grey.200">
-    Right div
-  </Box>
+
+  <Box flex={1}>
+        <ProductDetails
+          name="Fall Limited Senakers"
+          description="These low-profile sneackers are your perfect casual water companion. featuring a durable rubber outer sole, they'll withstand everything the weather can offer"
+          price={125.00}
+          rating={4.7}
+          reviews={256}
+          availability={true}
+          onAddToCart={() => alert("Added to cart!")}
+        />
+      </Box>
 </Box>
 
     
