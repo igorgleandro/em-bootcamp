@@ -6,6 +6,9 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { useContext } from 'react';
+import { ShoppingContext } from '../providers/ShoppingProvider';
+
 
 export default function CartMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -13,6 +16,8 @@ export default function CartMenu() {
 
   const handleOpen = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
+
+  const { cart } = useContext(ShoppingContext);
 
   return (
     <>
@@ -38,14 +43,23 @@ export default function CartMenu() {
 
         <Box sx={{ px: 2, py: 1 }}>
           <Typography variant="subtitle1" fontWeight={700}>
-            Your Cart
+            <h2>Cart Items: {cart.length}</h2>
           </Typography>
           <Typography variant="caption" color="text.secondary">
-            number Itens
-          </Typography>
+             {cart.map((item) => (
+              <li key={item.id}>
+                {item.name} – ${item.price} × {item.quantity}
+              </li>
+            ))}
+                 </Typography>
         </Box>
         <Divider />
-        <MenuItem onClick={handleClose}>Select Item</MenuItem>
+        <MenuItem onClick={handleClose}> <strong>
+  Total: $
+  {cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}
+</strong><ul>
+            
+      </ul></MenuItem>
         
         <Divider />
 
