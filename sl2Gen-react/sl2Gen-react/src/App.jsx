@@ -10,55 +10,17 @@ import Form1InputList from './components/Form1InputList.jsx';
 import Form3InputInsurer1 from './components/Form3InputInsurer1.jsx';
 import Form3InputInsurer2 from './components/Form3InputInsurer2.jsx';
 import Form3InputInsurer3 from './components/Form3InputInsurer3.jsx';
+import Box from '@mui/material/Box';
+import { useContext } from "react";
+import { FormContext } from "./providers/FormProvider";
+import SubmitButton from "./logic/SubmitButton";
 
-import Box from '@mui/material/Box';    
 
 
 
 const App = () => {
-  const [form1, setForm1] = useState({
-    agentName: '',
-    agentNbr: '',
-    agencyName: '',
-    agencyNbr: '',
-  })
 
-  const [form2, setForm2] = useState({
-    nameInsured: '',
-    descriptionRisk: '',
-    coverageCode: '',
-  })
-
-    const [form3a, setForm3a] = useState({
-        insurer1: '',
-        contactedThrough1: '',
-        fullContactName1: '',
-        emailPhone1: '',
-        website1: '',
-        naic1: '',
-        date1: '',
-    });
-
-    const [form3b, setForm3b] = useState({
-        insurer2: '',
-        contactedThrough2: '',
-        fullContactName2: '',
-        emailPhone2: '',
-        website2: '',
-        naic2: '',
-        date2: '',
-    });
-
-    const [form3c, setForm3c] = useState({
-        insurer3: '',
-        contactedThrough3: '',
-        fullContactName3: '',
-        emailPhone3: '',
-        website3: '',
-        naic3: '',
-        date3: '',
-    });
-
+    const { form1, setForm1, form2, setForm2, form3a, setForm3a, form3b, setForm3b, form3c, setForm3c } = useContext(FormContext);
   const [showConfirm, setShowConfirm] = useState(false)
 
   const updateForm1 = (event) => {
@@ -109,8 +71,8 @@ const ConfirmedInfo = ({ form1, form2, form3a,form3b,form3c }) => {
 
   return createPortal(
     
-    <div className="fixed inset-0 flex items-center justify-center bg-cyan-700/60 backdrop-blur-sm">
-      <div className="bg-white p-4 rounded shadow-lg max-w-sm w-full">
+    <Box className="fixed inset-0 flex items-center justify-center bg-cyan-700/60 backdrop-blur-sm">
+      <Box className="bg-white p-4 rounded shadow-lg max-w-sm w-full">
         <p><strong>Agent Name:</strong> {form1.agentName}</p>
         <p><strong>Agent Nbr:</strong> {String(form1.agentNbr)}</p>
         <p><strong>Agency Name:</strong> {form1.agencyName}</p>
@@ -155,23 +117,23 @@ const ConfirmedInfo = ({ form1, form2, form3a,form3b,form3c }) => {
               <p>Date: {form3c.date3}</p>
               </div>
             </Box>
+
+          <SubmitButton />
       
           <ColorButtons
           color={'red'}
           text={'Reset Input'}
           func= {handleResetConfirm}
         />
-    </div>
-    </div>,
+    </Box>
+    </Box>,
     document.body 
   );
 };
 
     //List Form1 data
     const form1InputList = Form1InputList({updateForm1, form1})
-    //List Form2 data
     const form2InputList= Form2InputList({ updateForm2, form2 })
-    // List Form 3a 3b 3c data
     const form3aInputList = Form3InputInsurer1({ updateForm3a, form3a });
     const form3bInputList = Form3InputInsurer2({ updateForm3b, form3b });
     const form3cInputList = Form3InputInsurer3({ updateForm3c, form3c });
@@ -229,28 +191,15 @@ const ConfirmedInfo = ({ form1, form2, form3a,form3b,form3c }) => {
                         </div>
                     </div>
 
-                    {/* RIGHT COLUMN (Preview) */}
-                    <div className="bg-white p-4">
-                        <h1 className="text-red-700 font-bold">Preview:</h1>
-
-                        <p>Agent Name: {form1.agentName}</p>
-                        <p>Agent Nbr: {form1.agentNbr}</p>
-                        <p>Agency Name: {form1.agencyName}</p>
-                        <p>Agency Nbr: {form1.agencyNbr}</p>
-
-                        <h1 className="text-red-700 font-bold">____________________________</h1>
-
-                        <p>Name of Insured: {form2.nameInsured}</p>
-                        <p>Description Risk: {form2.descriptionRisk}</p>
-                        <p>Coverage Code: {form2.coverageCode}</p>
-
-                        <h1 className="text-red-700 font-bold">____________________________</h1>
-
-
+                    <div>
+                        Create Something here!
                     </div>
 
+                </div>
+                <br/>
                     {/* FORM 3 – Inputs */}
-                    <div className="grid grid-cols-3 gap-4 w-full">
+                <div className="grid grid-cols-1 gap-4 max-w-6xl bg-white p-4">
+                    <div className="grid grid-cols-3 gap-4 ">
                         <div className="bg-gray-500 p-4">
                             {Object.values(form3aInputList).map(
                                 ({ onChange, name, type, value, placeholder, options }, idx) => (
@@ -299,6 +248,30 @@ const ConfirmedInfo = ({ form1, form2, form3a,form3b,form3c }) => {
                             )}
                         </div>
                     </div>
+                </div>
+<br/>
+
+                    {/*(Preview) */}
+                    <div className="bg-white bg-clip-padding p-4">
+                        <h1 className="text-red-700 font-bold">Preview:</h1>
+
+                        <p>Agent Name: {form1.agentName}</p>
+                        <p>Agent Nbr: {form1.agentNbr}</p>
+                        <p>Agency Name: {form1.agencyName}</p>
+                        <p>Agency Nbr: {form1.agencyNbr}</p>
+
+                        <h1 className="text-red-700 font-bold">____________________________</h1>
+
+                        <p>Name of Insured: {form2.nameInsured}</p>
+                        <p>Description Risk: {form2.descriptionRisk}</p>
+                        <p>Coverage Code: {form2.coverageCode}</p>
+
+                        <h1 className="text-red-700 font-bold">____________________________</h1>
+
+
+
+
+
 
                     <Box sx={{ p: 2, borderRadius: 2, boxShadow: 2, bgcolor: 'background.paper' }}>
                         <Typography variant="h6" gutterBottom>Insurer 1</Typography>
@@ -329,8 +302,9 @@ const ConfirmedInfo = ({ form1, form2, form3a,form3b,form3c }) => {
                         <p>Date: {form3c.date3}</p>
                     </Box>
 
-                </div>
+                   </div>
 
+            </div>
 
                     {showConfirm ? (
                     <ConfirmedInfo
@@ -343,7 +317,7 @@ const ConfirmedInfo = ({ form1, form2, form3a,form3b,form3c }) => {
                 ) : (
                     <p className="mt-4 text-gray-600">No data confirmed yet.</p>
                 )}
-            </div>
+
         </>
     );
 };
