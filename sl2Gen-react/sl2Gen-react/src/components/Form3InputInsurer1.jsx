@@ -52,17 +52,17 @@ const Form3InputInsurer1 = ({ updateForm3a, form3a }) => {
         naic1Input: {
             onChange: updateForm3a,
             name: "naic1",
-            type: "text",                // keep text, preserves leading zeros
+            type: "text",
             value: form3a.naic1 ?? "",
             placeholder: "NAIC",
-            pattern: "\\d{3,10}",        // optional: simple numeric pattern
-            inputMode: "numeric",        // mobile numeric keypad hint
+            pattern: "\\d{3,10}",
+            inputMode: "numeric",
         },
 
         date1Input: {
             onChange: updateForm3a,
             name: "date1",
-            type: "month",               // expects YYYY-MM
+            type: "month",
             value: form3a.date1 ?? "",
             placeholder: "Date (YYYY-MM)",
         },

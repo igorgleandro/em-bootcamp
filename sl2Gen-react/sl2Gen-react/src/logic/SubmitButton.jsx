@@ -48,7 +48,7 @@ const SubmitButton = () => {
         setLoading(true);
 
         try {
-            const res = await fetch("http://localhost:3000/forms", {
+            const res = await fetch("http://localhost:3000/user-forms", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newForm),
